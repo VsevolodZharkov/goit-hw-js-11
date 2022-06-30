@@ -21,23 +21,25 @@ btnR.addEventListener('click', () => {
 function inputHandler(e) {
   e.preventDefault();
   gallery.innerHTML = '';
+	btnR.classList.add('hidden');
   page = 1;
   let a = e.currentTarget.elements[0].value;
 	valueINp = a.trim();
   fetchCountries(valueINp, page)
     .then(data => {
-      	if (data.hits.length === 0 || valueINp === ' ' || valueINp === '') {
+      	if (data.data.hits.length === 0 || valueINp === ' ' || valueINp === '') {
         Notiflix.Notify.failure(
           'Sorry, there are no images matching your search query. Please try again.'
         );
-       	 form.reset();
-       	 return;
+					
+       	 	form.reset();
+       	 	return;
      	 }
-      renderMarkup(data.hits);
+      renderMarkup(data.data.hits);
 			Notiflix.Notify.info(
-				`${data.totalHits} images were found for your query.`
+				`${data.data.totalHits} images were found for your query.`
 				);
-			if(data.totalHits <= 40 ) {
+			if(data.data.totalHits <= 40 ) {
 				Notiflix.Notify.info(
 					"We're sorry, but you've reached the end of search results."
 				);

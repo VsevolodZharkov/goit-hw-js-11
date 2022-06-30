@@ -2,8 +2,8 @@ import axios from "axios";
 const KEY_USER = '28344913-175486e0517d92fb48d77b40d';
 const URL = 'https://pixabay.com/api/';
 
-const fetchCountries = (name, page) => {
-  return axios(
+const fetchCountries = async (name, page) => {
+  return await axios(
 		{
 			url: `${URL}`,
 			params: {
@@ -17,9 +17,6 @@ const fetchCountries = (name, page) => {
 			}
 			}
   	)
-    .then(response => {
-      return response;
-    })
 };
 
 export { fetchCountries };
