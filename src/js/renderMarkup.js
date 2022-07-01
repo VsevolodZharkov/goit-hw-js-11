@@ -1,3 +1,6 @@
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
+
 const renderMarkup = images => {
   const gallery = document.querySelector('.gallery');
 
@@ -13,7 +16,8 @@ const renderMarkup = images => {
         downloads,
       } = element;
       return `
-		<div class="photo-card">
+		<a class="gallery__item" href="${largeImageURL}">
+			<div class="photo-card">
 			<img src="${webformatURL}" alt="${tags}" loading="lazy"/>
 				<div class="info">
 					<p class="info-item"><b>Likes: </b>${likes}</p>
@@ -21,11 +25,13 @@ const renderMarkup = images => {
 					<p class="info-item"><b>Comments: </b>${comments}</p>
 					<p class="info-item"><b>Downloads: </b>${downloads}</p>
 				</div>
-		</div>`;
+			</div>
+		</a>`;
     })
     .join('');
   gallery.innerHTML += murkup;
-
+  let gal = new SimpleLightbox('.gallery a');
+	gal.refresh();
   const btnR = document.querySelector('.load-more');
   btnR.classList.remove('hidden');
 };
