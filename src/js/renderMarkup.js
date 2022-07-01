@@ -3,7 +3,15 @@ const renderMarkup = images => {
 
   const murkup = images
     .map(element => {
-      const { webformatURL, largeImageURL, tags, likes, views, comments, downloads } = element;
+      const {
+        webformatURL,
+        largeImageURL,
+        tags,
+        likes,
+        views,
+        comments,
+        downloads,
+      } = element;
       return `
 		<div class="photo-card">
 			<img src="${webformatURL}" alt="${tags}" loading="lazy"/>
@@ -16,7 +24,7 @@ const renderMarkup = images => {
 		</div>`;
     })
     .join('');
-	gallery.innerHTML += murkup;
+  gallery.innerHTML += murkup;
 
   const btnR = document.querySelector('.load-more');
   btnR.classList.remove('hidden');
